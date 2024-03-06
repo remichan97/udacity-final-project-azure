@@ -13,9 +13,12 @@ from opencensus.stats import stats as stats_module
 from opencensus.ext.azure.trace_exporter import AzureExporter
 from opencensus.trace.samplers import ProbabilitySampler
 from opencensus.trace.tracer import Tracer
+from opencensus.trace import config_integration
 from opencensus.ext.flask.flask_middleware import FlaskMiddleware
 
 azure_exporter = AzureExporter(connection_string=os.getenv('app_insight'))
+config_integration.trace_integrations(['logging'])
+config_integration.trace_integrations(['requests'])
 
 # Logging
 logger = logging.getLogger(__name__)
