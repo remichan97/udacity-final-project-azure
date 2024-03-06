@@ -1,8 +1,9 @@
+azure-identity
+azure-mgmt-applicationinsights
 Flask
+opencensus
 opencensus-ext-azure
 opencensus-ext-flask
-redis
-opencensus
+opencensus-ext-requests
 opencensus-ext-logging
-azure-mgmt-applicationinsights
-azure-identity
+redis
