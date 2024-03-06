@@ -16,15 +16,15 @@ from opencensus.trace.tracer import Tracer
 from opencensus.trace import config_integration
 from opencensus.ext.flask.flask_middleware import FlaskMiddleware
 
-azure_exporter = AzureExporter(connection_string='InstrumentationKey= {}'.format(os.getenv('app_insight')))
+azure_exporter = AzureExporter(connection_string='InstrumentationKey={b1}'.format(b1 = os.getenv('app_insight')))
 config_integration.trace_integrations(['logging'])
 config_integration.trace_integrations(['requests'])
 
 # Logging
 logger = logging.getLogger(__name__)
-loghandler = AzureLogHandler(connection_string='InstrumentationKey= {}'.format(os.getenv('app_insight')))
+loghandler = AzureLogHandler(connection_string='InstrumentationKey={b1}'.format(b1 = os.getenv('app_insight')))
 loghandler.setFormatter(logging.Formatter('%(traceId)s %(spanId)s %(message)s'))
-eventhandler = AzureEventHandler(connection_string='InstrumentationKey= {}'.format(os.getenv('app_insight')))
+eventhandler = AzureEventHandler(connection_string='InstrumentationKey={b1}'.format(b1 = os.getenv('app_insight')))
 logger.addHandler(loghandler)
 logger.addHandler(eventhandler)
 logger.setLevel(level=logging.INFO)
@@ -32,7 +32,7 @@ logger.setLevel(level=logging.INFO)
 # Metrics
 stats = stats_module.stats
 view_manager = stats.view_manager
-exporter = metrics_exporter.new_metrics_exporter(connection_string='InstrumentationKey= {}'.format(os.getenv('app_insight')))
+exporter = metrics_exporter.new_metrics_exporter(connection_string='InstrumentationKey={b1}'.format(b1 = os.getenv('app_insight')))
 view_manager.register_exporter(exporter=exporter)
 
 
