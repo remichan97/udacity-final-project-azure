@@ -67,8 +67,6 @@ else:
     title = app.config['TITLE']
 
 # Redis Connection
-# r = redis.Redis()
-
 # This is for containers
 redis_server = os.environ['REDIS']
 
@@ -78,13 +76,14 @@ try:
       r = redis.StrictRedis(host=redis_server,
                         port=6379,
                         password=os.environ['REDIS_PWD'])
-   else:
+   elif redis_server is not None:
       r = redis.Redis(redis_server)
+   else:
+       r = redis.Redis()
    r.ping()
 except redis.ConnectionError:
-    # Give our app a second chance by attempting a local commection
-    r = redis.Redis()
-
+    # Bail completely, we can't use local connection, can't use any remote choice
+    exit('Unable to establish a connection to any Redis instances')
 
 # Change title to host name to demo NLB
 if app.config['SHOWHOST'] == "true":
