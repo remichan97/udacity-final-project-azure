@@ -1,5 +1,5 @@
 # Pull the base image
-FROM tiangolo/uwsgi-nginx-flask:python3.6
+FROM python:3
 # Install depndencies 
 RUN pip install redis
 RUN pip install opencensus
