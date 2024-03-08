@@ -1,5 +1,3 @@
-azure-identity
-azure-mgmt-applicationinsights
 Flask
 opencensus
 opencensus-ext-azure
