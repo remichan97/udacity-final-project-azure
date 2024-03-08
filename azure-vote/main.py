@@ -82,7 +82,8 @@ try:
       r = redis.Redis(redis_server)
    r.ping()
 except redis.ConnectionError:
-   exit('Failed to connect to Redis, terminating.')
+    # Give our app a second chance by attempting a local commection
+    r = redis.Redis()
 
 
 # Change title to host name to demo NLB
